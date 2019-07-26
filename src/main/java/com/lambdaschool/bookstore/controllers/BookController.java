@@ -47,7 +47,7 @@ public class BookController
 
     @ApiOperation(value = "Update a Book")
     @ApiResponses(value = {@ApiResponse(code = 200, message = "Book Updated"), @ApiResponse(code = 500, message = "Error retrieving Courses", response = ErrorDetail.class)})
-    @PutMapping(value = "/data/books/{id}")
+    @PutMapping(value = "/data/books/{id}", consumes = {"application/json"})
     public ResponseEntity<?> updateBook(@RequestBody Book book, @PathVariable long id)
     {
         bookService.infoUpdate(book, id);

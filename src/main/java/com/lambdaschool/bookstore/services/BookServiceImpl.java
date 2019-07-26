@@ -77,7 +77,8 @@ public class BookServiceImpl implements BookService
     @Override
     public Book infoUpdate(Book book, long id)
     {
-        Book currentBook = bookRepository.findByBooktitle(book.getBooktitle());
+        Book currentBook = bookRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException(Long.toString(id)));
 
         if (currentBook != null)
         {
