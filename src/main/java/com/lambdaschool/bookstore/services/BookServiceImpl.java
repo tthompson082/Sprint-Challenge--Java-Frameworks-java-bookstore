@@ -72,4 +72,34 @@ public class BookServiceImpl implements BookService
             throw new ResourceNotFoundException(Long.toString(id));
         }
     }
+
+    @Transactional
+    @Override
+    public Book infoUpdate(Book book, long id)
+    {
+        Book currentBook = bookRepository.findByBooktitle(book.getBooktitle());
+
+        if (currentBook != null)
+        {
+            if (id == currentBook.getBookid())
+            {
+                if (book.getBooktitle() != null)
+                {
+                    currentBook.setBooktitle(book.getBooktitle());
+                }
+
+                if (book.getISBN() != null)
+                {
+                    currentBook.setISBN(book.getISBN());
+                }
+
+                if (book.getCopy() != 0)
+                {
+                    currentBook.setCopy(book.getCopy());
+                }
+            }
+        }
+
+        return bookRepository.save(currentBook);
+    }
 }

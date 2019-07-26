@@ -7,21 +7,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "authors")
+@Table(name = "AUTHOR")
 public class Authors extends Auditable
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long authorid;
 
-    @Column
+    @Column(name = "lname")
     private String lastname;
 
-    @Column
+    @Column(name = "fname")
     private String firstname;
 
-    @ManyToMany(mappedBy = "author", cascade = CascadeType.ALL)
-    @JsonIgnoreProperties("author")
+    @ManyToMany(mappedBy = "authors")
+    @JsonIgnoreProperties("authors")
     private List<Book> books = new ArrayList<>();
 
     public Authors()
